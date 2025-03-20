@@ -26,40 +26,36 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// main routine
+fun main() : Unit = runBlocking{
 
-fun main(): Unit = runBlocking {
+    launch { first()  } // coroutine
+    launch { second() } // coroutine
+//
+//    first() // subroutine
+//    second() // subroutine
+}
 
-    launch {
-        takeOrder("Customer 1")
-        cookFood("Customer 1")
-        deliverIt("Customer 1")
+// stack
+
+// first
+// main
+
+
+suspend fun first() {
+    var first = 10
+    while (true){
+        println("first ${first++}")
+        delay(1000)
     }
+}
 
-    launch {
-        takeOrder("Customer 2")
-        cookFood("Customer 2")
-        deliverIt("Customer 2")
+suspend fun second() {
+    var second = 0
+    while (true){
+        println("second ${second++}")
+        delay(2000)
     }
-
-
-
 }
-
-suspend fun takeOrder(name: String) {
-    println("Order have been taken for $name")
-}
-
-suspend fun cookFood(name: String) {
-    println("Food is cooked for $name")
-    delay(4000)
-}
-
-
-suspend fun deliverIt(name: String) {
-    println("Deliver it to $name")
-
-}
-
-
 
 
